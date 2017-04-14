@@ -27,7 +27,7 @@ class QuestionsController < ApplicationController
   # POST /questions.json
   def create
     @question = Question.new(question_params)
-
+    @question.poll_id=params[:poll_id]
     respond_to do |format|
       if @question.save
         format.html { redirect_to @poll, notice: 'Question was successfully created.' }
