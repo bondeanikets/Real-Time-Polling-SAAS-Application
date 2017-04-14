@@ -15,7 +15,7 @@
       %tr
         %td= question.title
         %td= question.kind
-        %td= question.poll
+        %td= question.poll_id 
         %td= link_to 'Show', [@poll, question]
         %td= link_to 'Edit', edit_poll_question_path(@poll, question)
         %td= link_to 'Destroy', [@poll, question], :method => :delete, :data => { :confirm => 'Are you sure?' }

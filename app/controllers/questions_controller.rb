@@ -17,6 +17,7 @@ class QuestionsController < ApplicationController
   # GET /questions/new
   def new
     @question = @poll.questions.build
+    5.times { @question.possible_answers.build  }
   end
 
   # GET /questions/1/edit
@@ -26,8 +27,8 @@ class QuestionsController < ApplicationController
   # POST /questions
   # POST /questions.json
   def create
-    @question = Question.new(question_params)
-    @question.poll_id=params[:poll_id]
+    @question = @poll.questions.build(question_params)
+    #@question.poll_id = params[:poll_id]
     respond_to do |format|
       if @question.save
         format.html { redirect_to @poll, notice: 'Question was successfully created.' }
@@ -58,7 +59,7 @@ class QuestionsController < ApplicationController
   def destroy
     @question.destroy
     respond_to do |format|
-      format.html { redirect_to questions_url, notice: 'Question was successfully destroyed.' }
+      format.html { redirect_to 'poll#:poll_id#question', notice: 'Question was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
