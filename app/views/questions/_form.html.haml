@@ -6,21 +6,24 @@
         - @question.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
+  %p
     = f.label :title
     = f.text_field :title, class: "form-control"
+    
   .field
     = f.label :kind
-    
   .radio
     -@kind_options.each do |option|
       %label
         = f.radio_button :kind, option[1]
         = option[0]
-        
-  -f.fields_for :possible_answers do |c|
+      
+  %p
+    %label Specify some choices:
+      
+  =f.fields_for :possible_answers do |c|
     %p
-      =c.text_field :title, class: 'form_control', placeholder: "Enter possible choice here"
+      =c.text_field :title, placeholder: "Type your choice", class: "form-control"
   
   .actions
     = f.submit 'Save', class: "btn btn-primary"

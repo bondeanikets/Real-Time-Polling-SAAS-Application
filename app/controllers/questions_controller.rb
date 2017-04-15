@@ -17,7 +17,7 @@ class QuestionsController < ApplicationController
   # GET /questions/new
   def new
     @question = @poll.questions.build
-    5.times { @question.possible_answers.build  }
+    5.times {@question.possible_answers.build}
   end
 
   # GET /questions/1/edit
@@ -28,7 +28,6 @@ class QuestionsController < ApplicationController
   # POST /questions.json
   def create
     @question = @poll.questions.build(question_params)
-    #@question.poll_id = params[:poll_id]
     respond_to do |format|
       if @question.save
         format.html { redirect_to @poll, notice: 'Question was successfully created.' }
@@ -72,7 +71,7 @@ class QuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(:title, :kind, :poll_id)
+      params.require(:question).permit(:poll_id, :title, :kind, { possible_answers_attributes: [ :question_id, :title ] } )
     end
     
     def set_poll
