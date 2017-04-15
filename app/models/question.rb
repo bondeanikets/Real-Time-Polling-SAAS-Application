@@ -3,5 +3,5 @@ class Question < ApplicationRecord
   
   has_many :possible_answers
   
-  #accepts_nested_attributes_for :possible_answers, reject_if: proc { |attributes| attributes['title'].blank? }
+  accepts_nested_attributes_for :possible_answers, reject_if: proc { |attributes| attributes['title'].blank? }
 end

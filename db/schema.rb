@@ -17,6 +17,8 @@ ActiveRecord::Schema.define(version: 20170414223744) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+  
+  add_index "possible_answers", ["question_id"], name: "index_possible_answers_on_question_id"
 
   create_table "possible_answers", force: :cascade do |t|
     t.integer  "question_id"
