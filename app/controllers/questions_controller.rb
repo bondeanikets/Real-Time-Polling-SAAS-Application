@@ -18,7 +18,7 @@ class QuestionsController < ApplicationController
   # GET /questions/new
   def new
     @question = @poll.questions.build
-    @question.possible_answers.build
+    5.times { @question.possible_answers.build }
   end
 
   # GET /questions/1/edit
@@ -29,16 +29,6 @@ class QuestionsController < ApplicationController
   # POST /questions.json
   def create
     @question = @poll.questions.build(question_params)
-    @possible_answers = @question.possible_answers.build
-    s.id = @question
-    #@a = @question.possible_answers.build
-    print('Hello----')
-    print(s.id)
-    #print(@a.id)
-    #print(@question.id)
-    #print(params[:poll_id])
-    print('-----bye')
-
     respond_to do |format|
       if @question.save
         format.html { redirect_to @poll, notice: 'Question was successfully created.' }
