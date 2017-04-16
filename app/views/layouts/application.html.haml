@@ -3,10 +3,14 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title Aniketpoll
-    = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag  "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+    = csrf_meta_tags
   %body
-    = render "nav"
+    =render 'nav'
     .container
-      = yield
+      =content_tag :div, flash[:notice], class: "flash bg-success" if flash[:notice]
+      =content_tag :div, flash[:alert], class: "flash bg-danger" if flash[:alert]
+      =yield
+    =yield :footer

@@ -16,6 +16,8 @@
         %td= question.title
         %td= question.kind
         %td= question.poll_id 
-        %td= link_to 'Show', [@poll, question]
-        %td= link_to 'Edit', edit_poll_question_path(@poll, question)
-        %td= link_to 'Destroy', [@poll, question], :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td= link_to 'Show', [@poll, question], class: "btn btn-default"
+        %td= link_to 'Edit', edit_poll_question_path(@poll, question), class: "btn btn-default"
+        %td= link_to 'Delete', [@poll, question], :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-default"
+        
+        
