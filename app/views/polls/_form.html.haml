@@ -8,6 +8,7 @@
 
   .field
     = f.label :title
-    = f.text_field :title
-  .actions
-    = f.submit 'Save'
+    = f.text_field :title, class: 'form-control'
+  %p  
+    .actions
+      = f.submit 'Save', class: "btn btn-primary"

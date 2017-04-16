@@ -1,7 +1,7 @@
-%h1 Editing poll
+%h1 Editing Poll Title
 
 = render 'form'
 
-= link_to 'Show', @poll
-\|
-= link_to 'Back', polls_path
+%p.btn-group  
+  = link_to 'Show', @poll, class: "btn btn-default"
+  = link_to 'Back', polls_path, class: "btn btn-default"

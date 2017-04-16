@@ -1,13 +1,13 @@
-%h1 Listing questions
+%h1 Listing All Questions
 
 %table
   %thead
     %tr
       %th Title
       %th Kind
-      %th Poll
+      %th Poll  
       %th
-      %th
+      %th Options
       %th
 
   %tbody
@@ -19,5 +19,4 @@
         %td= link_to 'Show', [@poll, question], class: "btn btn-default"
         %td= link_to 'Edit', edit_poll_question_path(@poll, question), class: "btn btn-default"
         %td= link_to 'Delete', [@poll, question], :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-default"
-        
         

@@ -2,18 +2,17 @@
 
 %%ul
   -@polls.each do |poll|
-    %li
-    
-      = link_to poll.title, poll
-      |
-      = link_to 'Edit Name', edit_poll_path(poll), class: "btn btn-default"
-      |
-      = link_to 'Add a question', new_poll_question_path(poll), class: "btn btn-default"
-      |
-      = link_to 'Answer', new_poll_reply_path(poll), class: "btn btn-default"
-      |
-      = link_to 'Back', polls_path(poll), class: "btn btn-default"
-      |
-      = link_to 'Delete', poll, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-default"
+    %p
+      %li
+        = link_to poll.title, poll
+        = link_to 'Edit Name', edit_poll_path(poll), class: "btn btn-default"
+        |
+        = link_to 'Add a question', new_poll_question_path(poll), class: "btn btn-default"
+        |
+        = link_to 'Answer', new_poll_reply_path(poll), class: "btn btn-default"
+        |
+        = link_to 'Back', polls_path(poll), class: "btn btn-default"
+        |
+        = link_to 'Delete', poll, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-default"
       
 %p= link_to 'New Poll', new_poll_path, class: "btn btn-primary"
