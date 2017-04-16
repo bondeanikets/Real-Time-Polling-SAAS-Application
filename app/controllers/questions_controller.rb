@@ -31,7 +31,8 @@ class QuestionsController < ApplicationController
     @question = @poll.questions.build(question_params)
     respond_to do |format|
       if @question.save
-        format.html { redirect_to @poll, notice: 'Question was successfully created.' }
+        flash[:notice] = "Question was successfully created."
+        format.html { redirect_to @poll }
         format.json { render :show, status: :created, location: @question }
       else
         format.html { render :new }
