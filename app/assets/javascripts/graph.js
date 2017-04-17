@@ -1,33 +1,49 @@
-google.load('visualization', '1.0', {'packages': ['corechart']});
+var Graph = function(selector, data, kind) {
+  this.selector = selector;
+  this.data = data;
+  this.kind = kind;
+};
 
-// Load the Visualization API and the corechart package.
-google.charts.load('current', {'packages':['corechart']});
-// Set a callback to run when the Google Visualization API is loaded.
-google.charts.setOnLoadCallback(drawChart);
+Graph.prototype.getData = function() {
+  var _this = this;
+  var dataWithCaptions = this.data.data.map(function(element, index, array) {
+    return [ _this.data.x_axis.series[index], element ];
+  });
 
-// Callback that creates and populates a data table,
-// instantiates the pie chart, passes in the data and
-// draws it.
-function drawChart() {
+  return google.visualization.arrayToDataTable([
+    [ this.data.x_axis.legend, this.data.y_axis.legend ],
+  ].concat(dataWithCaptions));
+};
 
-    // Create the data table.
-    var data = new google.visualization.DataTable();
-    data.addColumn('string', 'Topping');
-    data.addColumn('number', 'Slices');
-    data.addRows([
-      ['Mushrooms', 3],
-      ['Onions', 1],
-      ['Olives', 1],
-      ['Zucchini', 1],
-      ['Pepperoni', 2]
-    ]);
-    
-    // Set chart options
-    var options = {'title':'How Much Pizza I Ate Last Night',
-                   'width':400,
-                   'height':300};
-    
-    // Instantiate and draw our chart, passing in some options.
-    var chart = new google.visualization.ColumnChart(document.getElementById('tab-stats'));
-    chart.draw(data, options);
+Graph.prototype.render = function() {
+  var divWidth = $(this.selector).parents(".container:first").prop("clientWidth");
+  var chart = new google.visualization[Graph.graphs[this.kind]]($(this.selector)[0]);
+  var options = {
+    width: divWidth,
+    min: 0,
+    legend: { position: "none" },
+    height: 300,
+    fontName: "sans-serif",
+    fontSize: "12",
+    title: this.data.title
+  };
+
+  chart.draw(this.getData(), options);
+};
+
+Graph.instances = [];
+
+Graph.column = function(selector, data) {
+  Graph.instances.push(new Graph(selector, data, "column"));
+};
+
+Graph.pie = function(selector, data) {
+  Graph.instances.push(new Graph(selector, data, "pie"));
+};
+
+google.load('visualization', '1.0', {'packages':['corechart']});
+
+Graph.graphs = {
+  "column" : "ColumnChart",
+  "pie"    : "PieChart"
 }

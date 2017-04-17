@@ -1,5 +1,5 @@
 class PollSerializer
-  def count_per_month poll
+  def self.count_per_month poll
     polls_per_month = poll.replies.group_by { |reply|
       reply.created_at.beginning_of_month }
 
