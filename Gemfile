@@ -67,3 +67,7 @@ end
 group :development do
   gem 'html2haml'
 end
+
+group :production do
+  gem "pg"
+end
