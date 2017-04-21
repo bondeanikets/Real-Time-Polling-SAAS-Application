@@ -68,8 +68,10 @@ group :development do
 end
 
 group :development do
-  gem 'sqlite3', '1.3.13'
+  gem 'sqlite3'
 end
+
 group :production do
-  gem 'pg', '0.12.2'
+  gem 'pg'
+  gem "activerecord-postgresql-adapter"
 end

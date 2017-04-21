@@ -14,7 +14,7 @@ class PollSerializer
       },
       y_axis: {
         legend: "No. polls",
-        scale: [0, data.max + 1]
+        #scale: [0, data.max + 1]
       }
     }
   end
